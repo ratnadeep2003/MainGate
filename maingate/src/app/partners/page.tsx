@@ -2,14 +2,39 @@
 
 import React, { useState } from "react";
 import { PARTNERS } from "@/data/partners";
-import { Partner } from "@/types/partners";
+import { Partner, JobRole } from "@/types/partners";
 import { PartnerCard } from "@/components/partners/PartnerCard";
-import { PaywallModal } from "@/components/partners/PaywallModal";
+import { PartnerDescription } from "@/components/partners/PartnerDescription";
+import { JobDetailView } from "@/components/partners/JobDetailView";
 import { ChevronDown } from "lucide-react";
 
 export default function PartnersPage() {
   const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
+  const [selectedRole, setSelectedRole] = useState<JobRole | null>(null);
 
+  // Step 3: Job Description & Application Form View
+  if (selectedPartner && selectedRole) {
+    return (
+      <JobDetailView
+        partner={selectedPartner}
+        role={selectedRole}
+        onBack={() => setSelectedRole(null)}
+      />
+    );
+  }
+
+  // Step 2: Company Roles View (PartnerDescription)
+  if (selectedPartner) {
+    return (
+      <PartnerDescription
+        partner={selectedPartner}
+        onSelectRole={setSelectedRole}
+        onBack={() => setSelectedPartner(null)}
+      />
+    );
+  }
+
+  // Step 1: Default Startup List View
   return (
     <main className="max-w-4xl mx-auto px-4 mt-12 pb-20">
       <div className="text-center space-y-3 mb-10">
@@ -37,11 +62,6 @@ export default function PartnersPage() {
           />
         ))}
       </div>
-
-      <PaywallModal
-        partner={selectedPartner}
-        onClose={() => setSelectedPartner(null)}
-      />
     </main>
   );
 }

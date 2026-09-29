@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Backdoor - Startup Hiring",
+  title: "MainGate - Startup Hiring",
   description: "Get direct intros to startup founders.",
 };
 
