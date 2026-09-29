@@ -1,5 +1,5 @@
 "use client";
-
+//last card to show up
 import React, { useState } from "react";
 import { Partner, JobRole } from "@/types/partners";
 import { ChevronLeft, Upload, Briefcase, MapPin, DollarSign, FileText } from "lucide-react";

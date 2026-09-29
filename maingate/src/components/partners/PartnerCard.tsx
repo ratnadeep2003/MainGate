@@ -1,17 +1,18 @@
+"use client";
 import React from "react";
 import { Partner } from "@/types/partners";
 import { ArrowRight, Signal } from "lucide-react";
 
 interface PartnerCardProps {
   partner: Partner;
-  onSelect: (partner: Partner) => void;
+  onSelect?: (partner: Partner) => void; // 👈 Added '?' to make onSelect optional
 }
 
 export function PartnerCard({ partner, onSelect }: PartnerCardProps) {
   return (
     <div
-      onClick={() => onSelect(partner)}
-      className="group bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all cursor-pointer relative"
+      onClick={() => onSelect?.(partner)} // 👈 Optional chaining so it won't crash when omitted
+      className="group bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all cursor-pointer relative h-full"
     >
       <div>
         {/* Card Header */}
@@ -19,7 +20,6 @@ export function PartnerCard({ partner, onSelect }: PartnerCardProps) {
           <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-xl font-bold font-mono text-slate-800">
             {partner.logo}
           </div>
-          {/* 🎯 FIX: Render length instead of the raw array object */}
           <span className="text-[11px] font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
             {partner.roles.length} roles
           </span>

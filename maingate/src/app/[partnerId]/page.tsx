@@ -1,26 +1,28 @@
-"use client";
-//first card to show up
-import React from "react";
-import { Partner, JobRole } from "@/types/partners";
+import Link from "next/link";
+import { PARTNERS } from "@/data/partners";
+import { notFound } from "next/navigation";
 import { ArrowRight, ChevronDown, ArrowLeft } from "lucide-react";
 
-interface PartnerDescriptionProps {
-  partner: Partner;
-  onSelectRole: (role: JobRole) => void;
-  onBack: () => void;
-}
+export default async function PartnerPage({
+  params,
+}: {
+  params: Promise<{ partnerId: string }>;
+}) {
+  const { partnerId } = await params;
+  const partner = PARTNERS.find((p) => p.id === partnerId);
 
-export function PartnerDescription({ partner, onSelectRole, onBack }: PartnerDescriptionProps) {
+  if (!partner) notFound();
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       {/* Top Back Navigation */}
-      <button
-        onClick={onBack}
-        className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 transition-colors mb-8"
+      <Link
+        href="/"
+        className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 transition-colors mb-8"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>All startups</span>
-      </button>
+      </Link>
 
       {/* Header Info */}
       <div className="text-center space-y-4 mb-12">
@@ -47,10 +49,10 @@ export function PartnerDescription({ partner, onSelectRole, onBack }: PartnerDes
       {/* Roles Cards */}
       <div className="space-y-4">
         {partner.roles.map((role) => (
-          <div
+          <Link
             key={role.id}
-            onClick={() => onSelectRole(role)} // 👈 Updated from onSelect(partner) to onSelectRole(role)
-            className="group bg-white border border-slate-200/80 rounded-2xl p-6 hover:shadow-md hover:border-slate-300 transition-all cursor-pointer relative"
+            href={`/${partner.id}/${role.id}`}
+            className="block group bg-white border border-slate-200/80 rounded-2xl p-6 hover:shadow-md hover:border-slate-300 transition-all cursor-pointer relative"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -69,7 +71,7 @@ export function PartnerDescription({ partner, onSelectRole, onBack }: PartnerDes
                 <ArrowRight className="w-4 h-4" />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

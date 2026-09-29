@@ -1,40 +1,9 @@
-"use client";
-
-import React, { useState } from "react";
+import Link from "next/link";
 import { PARTNERS } from "@/data/partners";
-import { Partner, JobRole } from "@/types/partners";
 import { PartnerCard } from "@/components/partners/PartnerCard";
-import { PartnerDescription } from "@/components/partners/PartnerDescription";
-import { JobDetailView } from "@/components/partners/JobDetailView";
 import { ChevronDown } from "lucide-react";
 
-export default function PartnersPage() {
-  const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
-  const [selectedRole, setSelectedRole] = useState<JobRole | null>(null);
-
-  // Step 3: Job Description & Application Form View
-  if (selectedPartner && selectedRole) {
-    return (
-      <JobDetailView
-        partner={selectedPartner}
-        role={selectedRole}
-        onBack={() => setSelectedRole(null)}
-      />
-    );
-  }
-
-  // Step 2: Company Roles View (PartnerDescription)
-  if (selectedPartner) {
-    return (
-      <PartnerDescription
-        partner={selectedPartner}
-        onSelectRole={setSelectedRole}
-        onBack={() => setSelectedPartner(null)}
-      />
-    );
-  }
-
-  // Step 1: Default Startup List View
+export default function HomePage() {
   return (
     <main className="max-w-4xl mx-auto px-4 mt-12 pb-20">
       <div className="text-center space-y-3 mb-10">
@@ -55,11 +24,9 @@ export default function PartnersPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {PARTNERS.map((partner) => (
-          <PartnerCard
-            key={partner.id}
-            partner={partner}
-            onSelect={setSelectedPartner}
-          />
+          <Link key={partner.id} href={`/${partner.id}`}>
+            <PartnerCard partner={partner} />
+          </Link>
         ))}
       </div>
     </main>
