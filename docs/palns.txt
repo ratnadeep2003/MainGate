@@ -10,3 +10,6 @@
     • Founder migth ask 'How did Ratnadeep handle state synchronization between PHP and Flutter in the RTDAS project?' and the agent will screen through provided resume->project->github link to answer that question OR based on the fact that if user specified its answer to the agent via text directly
 
 3. Games like linkedin ?
+---------------------------------------------------------------------------------------------------------
+
+Their website has /partners to list companies that are hiring, and when i click on its logo, it asks to pay subscription fee to access whatsapp messages for applying to startups. 
