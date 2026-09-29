@@ -1,0 +1,12 @@
+1. The "Auto-PR" Sandbox Agent
+    • The agent monitors public GitHub repositories of target startups for open issues
+    • Inside an isolated Docker container, the agent runs a ReAct coding loop to write a working feature branch or bug fix.
+    • The agent itself would be smart enough to explain what changes it did to solve the issues, provided the user give proper links and instructions to solve the issues in forked and branch repo before comitting it 
+    • The outreach email/text includes: "I noticed issue #42 on your repo. I built a working fix—here is the live preview link and the draft PR"
+
+2. Interactive Digital Twin Pitch
+    • The cold email or messaging payload contains a simple command for engineers 'npx meet-ratnadeep'
+    • Running the command launches a CLI terminal app connected to a fine-tuned gemini model which knows your entire/latest history
+    • Founder migth ask 'How did Ratnadeep handle state synchronization between PHP and Flutter in the RTDAS project?' and the agent will screen through provided resume->project->github link to answer that question OR based on the fact that if user specified its answer to the agent via text directly
+
+3. Games like linkedin ?
